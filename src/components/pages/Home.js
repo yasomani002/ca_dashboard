@@ -1,10 +1,12 @@
 import React from 'react'
 import Layout from '../common/Layout'
+import Extra from '../extra/Extra';
 
 function Home() {
+ 
   return (
     <Layout>
-      <div>I am home</div>
+      <Extra />
     </Layout>
   )
 }
