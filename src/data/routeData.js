@@ -8,34 +8,34 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import DescriptionIcon from '@mui/icons-material/Description';
 
 export const routeData = [
+  // always put privert route as 1st
+  {
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        icon: <OtherHousesIcon />,
+        element: <Home />
+      },
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        icon: <DashboardIcon />,
+        element: <DashBoard />
+      },
+      {
+        path: '/document',
+        name: 'Document',
+        icon: <DescriptionIcon />,
+        element: <Document />
+      }
+    ]
+  },
   {
     path: '/login',
     name: 'Login',
     icon: <OtherHousesIcon />,
     element: <Login />
   },
-  {
-    path: '/',
-    name: 'Home',
-    icon: <OtherHousesIcon />,
-    element: (<PrivateRoute
-      element={<Home />}
-    />)
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    icon: <DashboardIcon  />,
-    element: (<PrivateRoute
-      element={<DashBoard />}
-    />)
-  },
-  {
-    path: '/document',
-    name: 'Document',
-    icon: <DescriptionIcon />,
-    element: (<PrivateRoute
-      element={<Document />}
-    />)
-  }
 ]

@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 })
 function Layout({ children }) {
     const classes = useStyles()
+
     return (
         <div className={classes.root}>
             <SideDrawer />

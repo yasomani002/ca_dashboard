@@ -5,6 +5,7 @@ import { Button } from '../common'
 import { routeData } from '../../data/routeData'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { color } from '../assets/constant'
 
 const useStyles = makeStyles({
@@ -12,46 +13,41 @@ const useStyles = makeStyles({
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: color.primary,
     },
     openDrawer: {
         width: '30%',
         maxWidth: '250px',
     },
     closeDrawer: {
-        width: '30%',
-        maxWidth: '100px',
+        width: '5%',
+        minWidth: '70px',
     },
     header: {
-        height: '50px',
-        width: '100%',
-        backgroundColor: 'blue',
+        height: '10vh',
         padding: '15px 20px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 2fr'
-    },
-    arrow: {
-        height: '0',
-        width: '0',
-        borderStyle: 'solid'
+        display: 'flex',
+        alignItems: 'center',
+        columnGap: '1rem'
     },
     headerText: {
         fontFamily: 'monospace',
-        fontSize: '1rem'
+        fontSize: '1rem',
+        color: color.text
     },
     menuContainer: {
         padding: '15px 20px',
-        backgroundColor: color.primary,
-        display: 'grid',
-        gridTemplateColumns: '1fr 2fr',
+        display: 'flex',
+        alignItems: 'center',
+        columnGap: '1rem'
     },
     activeTab: {
         backgroundColor: color.secondary,
         fontWeight: 'bold',
     },
     logoutButton: {
-        position: 'relative',
-        bottom: '0',
-        width: '100%'
+        marginTop: 'auto',
+        padding: '20px'
     }
 })
 
@@ -70,37 +66,44 @@ function SideDrawer() {
     }
 
     const routeRawData = routeData?.filter((item) => item.name !== 'Login')
+
     return (
         <div className={`${classes.mainDrawer} ${open ? classes.openDrawer : classes.closeDrawer}`}>
-
             <div className={classes.header}>
                 <button className={`${classes.arrow}`} onClick={handleSidebarToggle}>
                     {open ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
-
-
                 </button>
-                {
-                    open ? <p className={classes.headerText}> Just Code </p> : ''
-                }
+                {open ? <p className={classes.headerText}>Just Code</p> : ''}
             </div>
 
-            {routeRawData?.map((item, index) => {
+            {/* Menu Items */}
+            {routeRawData[0]?.children.map((item, index) => {
                 const isActive = location.pathname === item.path;
                 return (
                     <Link
                         className={`${classes.menuContainer} ${isActive ? classes.activeTab : ''}`}
-                        key={index} to={item.path} >
+                        key={index}
+                        to={item.path}
+                    >
                         {item.icon}
-                        {open &&
-                            <p className={classes.headerText}>{item.name}</p>
-                        }
+                        {open && <p className={classes.headerText}>{item.name}</p>}
                     </Link>
-                )
+                );
             })}
+
+            {/* Logout Button */}
             <div className={classes.logoutButton}>
-                <Button onClick={handleLogout}>Logout</Button>
+                {open ?
+                    <Button
+                        onClick={handleLogout}
+                    >Logout
+                    </Button>
+                    :
+                    <LogoutIcon />
+                }
             </div>
         </div>
+
     )
 }
 

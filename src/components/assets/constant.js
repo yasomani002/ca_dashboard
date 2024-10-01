@@ -1,6 +1,8 @@
 const color = {
-    primary: '#d4c9d9',
-    secondary: '#be9ccd'
+    primary: '#8EACCD',
+    secondary: '#D2E0FB',
+    text: '#31363F',
+    button: '#D2E0FB'
 }
 
 export { color }

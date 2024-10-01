@@ -1,12 +1,19 @@
 import React from 'react'
 import Layout from '../common/Layout'
 import { useForm } from 'react-hook-form'
-import { Button, Input } from '../common'
+import { Button, Header, Input } from '../common'
 import { makeStyles } from '@mui/styles'
+import { color } from '../assets/constant'
 
 const useStyles = makeStyles({
+    root: {
+        backgroundColor: color.secondary,
+        height: '90vh',
+        width: '100%'
+    },
     documentContainer: {
-        display: 'flex'
+        display: 'flex',
+
     }
 })
 
@@ -20,7 +27,9 @@ function Document() {
 
     return (
         <Layout>
-            <div>
+            <Header />
+
+            <div className={classes.root}>
                 <form onSubmit={handleSubmit(uploadDocument)}>
                     <div className={`w-2/3 ${classes.documentContainer}`}>
                         <h2>Upload your aadhar card</h2>
